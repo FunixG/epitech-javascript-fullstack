@@ -1,14 +1,13 @@
-import {Controller, Get} from "@nestjs/common";
+import { Controller, Get } from '@nestjs/common';
 
 @Controller()
 export class StatusController {
+  statusState = true;
 
-    statusState: boolean = true;
-
-    @Get()
-    public status(): object {
-        return {
-            "status": this.statusState
-        }
-    }
+  @Get()
+  public status(): object {
+    return {
+      status: this.statusState
+    };
+  }
 }
