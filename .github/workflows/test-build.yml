@@ -1,0 +1,65 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Push Maven realease
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup nodejs 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          
+      - name: Cd into back folder
+        run: cd back
+      
+      - name: Install depedencies
+        run: npm ci
+        
+      - name: Build backend
+        run: npm run build
+     
+      - name: Run tests
+        run: npm run test
+     
+      - name: Run lint validity
+        run: npm run lint
+
+  build-front:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup nodejs 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          
+      - name: Cd into front folder
+        run: cd front
+      
+      - name: Install depedencies
+        run: npm ci
+        
+      - name: Build front
+        run: npm run build
+     
+      - name: Run tests
+        run: npm run test
+     
+      - name: Run lint validity
+        run: npm run lint
+    
