@@ -18,21 +18,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          
-      - name: Cd into back folder
-        run: cd back
       
       - name: Install depedencies
-        run: npm ci
+        run: cd back &&npm ci
         
       - name: Build backend
-        run: npm run build
+        run: cd back && npm run build
      
       - name: Run tests
-        run: npm run test
+        run: cd back && npm run test
      
       - name: Run lint validity
-        run: npm run lint
+        run: cd back && npm run lint
 
   build-front:
     runs-on: ubuntu-latest
