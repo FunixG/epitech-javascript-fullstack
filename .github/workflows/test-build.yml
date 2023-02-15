@@ -42,19 +42,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          
-      - name: Cd into front folder
-        run: cd front
       
       - name: Install depedencies
-        run: npm ci
+        run: cd front npm ci
         
       - name: Build front
-        run: npm run build
+        run: cd front npm run build
      
       - name: Run tests
-        run: npm run test
+        run: cd front npm run test
      
       - name: Run lint validity
-        run: npm run lint
+        run: cd front npm run lint
     
