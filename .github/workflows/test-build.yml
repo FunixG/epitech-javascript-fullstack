@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Push Maven realease
+name: Test build for backend and front
 
 on:
   push:
