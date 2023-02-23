@@ -7,7 +7,7 @@ export class StatusController {
   @Get()
   public status(): object {
     return {
-      status: this.statusState
+      status: this.statusState,
     };
   }
 }
