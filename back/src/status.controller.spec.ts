@@ -7,6 +7,8 @@ describe('StatusController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
+    process.env.NODE_ENV = 'test'; // set environment to test
+
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
