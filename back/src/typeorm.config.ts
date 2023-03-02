@@ -17,8 +17,8 @@ const developmentConfig: TypeOrmModuleOptions = {
 };
 
 const testConfig: TypeOrmModuleOptions = {
-  type: "sqlite",
-  database: ":memory:",
+  type: 'sqlite',
+  database: ':memory:',
   synchronize: true,
   logging: false,
   entities: ['src/**/**.entity{.ts,.js}'],
