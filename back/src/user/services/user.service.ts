@@ -3,12 +3,14 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import CrudService from '../../core/services/crud-service';
 import User from '../entities/user.entity';
+import EncryptionService from "../../core/services/encryption-service";
 
 @Injectable()
 export default class UserService extends CrudService<User> {
   private readonly logger = new Logger(UserService.name);
 
-  constructor(@InjectRepository(User) repository: Repository<User>) {
+  constructor(@InjectRepository(User) repository: Repository<User>,
+              private encryptionService: EncryptionService) {
     super(repository);
   }
 
@@ -16,8 +18,13 @@ export default class UserService extends CrudService<User> {
     this.logger.log('User {} is removing.', entity.username);
   }
 
+  /**
+   * Suppressing lint scanning on that because this a middle method excecution.
+   * We need to encrypt password before saving it in database
+   * @param request
+   */
   beforeSavingDatabase(request: User): void {
-    this.logger.log('Database user action for user {}. Patching ? -> {}', request.username, request.id === null);
+    request.password = this.encryptionService.encrypt(request.password); // eslint-disable-line no-param-reassign
   }
 
   /**
