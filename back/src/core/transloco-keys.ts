@@ -3,5 +3,5 @@ export default class TranslocoKeys {
 
   static BAD_REQUEST = 'server.bad.request';
 
-  static INTERNAL_ERROR = 'server.internal-error'
+  static INTERNAL_ERROR = 'server.internal-error';
 }

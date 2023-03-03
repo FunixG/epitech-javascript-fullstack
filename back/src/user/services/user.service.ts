@@ -3,14 +3,16 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import CrudService from '../../core/services/crud-service';
 import User from '../entities/user.entity';
-import EncryptionService from "../../core/services/encryption-service";
+import EncryptionService from '../../core/services/encryption-service';
 
 @Injectable()
 export default class UserService extends CrudService<User> {
   private readonly logger = new Logger(UserService.name);
 
-  constructor(@InjectRepository(User) repository: Repository<User>,
-              private encryptionService: EncryptionService) {
+  constructor(
+  @InjectRepository(User) repository: Repository<User>,
+    private encryptionService: EncryptionService,
+  ) {
     super(repository);
   }
 
@@ -24,7 +26,7 @@ export default class UserService extends CrudService<User> {
    * @param request
    */
   beforeSavingDatabase(request: User): void {
-    request.password = this.encryptionService.encrypt(request.password); // eslint-disable-line no-param-reassign
+    request.password = this.encryptionService.encrypt(request.password);
   }
 
   /**
