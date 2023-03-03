@@ -1,5 +1,5 @@
 import {TypeOrmModuleOptions} from '@nestjs/typeorm';
-import User from "./user/entities/user.entity";
+import User from './user/entities/user.entity';
 
 const commonConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -10,7 +10,7 @@ const commonConfig: TypeOrmModuleOptions = {
   database: 'js_fullstack_docker',
   entities: [User],
   migrations: ['./migrations/*.ts'],
-  synchronize: false
+  synchronize: false,
 };
 
 const developmentConfig: TypeOrmModuleOptions = {
@@ -18,7 +18,7 @@ const developmentConfig: TypeOrmModuleOptions = {
   host: '127.0.0.1',
   database: 'js_fullstack',
   synchronize: true,
-  logging: true
+  logging: true,
 };
 
 const testConfig: TypeOrmModuleOptions = {

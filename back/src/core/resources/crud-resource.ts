@@ -1,10 +1,10 @@
 import {DeleteResult} from 'typeorm';
+import {Body, Delete, Get, Param, Patch, Post,} from '@nestjs/common';
 import ApiEntity from '../entities/api-entity';
 import CrudService from '../services/crud-service';
-import {Body, Delete, Get, Param, Patch, Post} from "@nestjs/common";
 
 export default class CrudResource<ENTITY extends ApiEntity, SERVICE extends CrudService<ENTITY>> {
-  constructor(private service: SERVICE) {
+  constructor(protected service: SERVICE) {
   }
 
   @Get(':id')

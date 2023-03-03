@@ -2,7 +2,7 @@ import {DeleteResult, FindOptionsWhere, Repository} from 'typeorm';
 import ApiEntity from '../entities/api-entity';
 import BadRequestError from '../errors/bad-request-error';
 import NotFoundError from '../errors/not-found-error';
-import TranslocoKeys from "../transloco-keys";
+import TranslocoKeys from '../transloco-keys';
 
 /**
  * Injectable() annotation needed
