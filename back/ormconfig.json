@@ -1,0 +1,11 @@
+{
+  "type": "postgres",
+  "host": "database",
+  "port": 5432,
+  "username": "root",
+  "password": "root",
+  "database": "js_fullstack_docker",
+  "entities": ["dist/**/entities/*{.ts,.js}"],
+  "migrations": ["dist/migrations/*.js"],
+  "synchronize": false
+}
