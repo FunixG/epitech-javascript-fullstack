@@ -1,4 +1,4 @@
-FROM node
+FROM node:18.14.2
 
 ADD src src
 ADD .eslintrc.js .

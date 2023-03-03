@@ -2,6 +2,7 @@ import {DeleteResult, FindOptionsWhere, Repository} from 'typeorm';
 import ApiEntity from '../entities/api-entity';
 import BadRequestError from '../errors/bad-request-error';
 import NotFoundError from '../errors/not-found-error';
+import TranslocoKeys from "../transloco-keys";
 
 /**
  * Injectable() annotation needed
@@ -21,6 +22,10 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    * @param id
    */
   async getById(id: number): Promise<ENTITY> {
+    if (id === null) {
+      throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_ID);
+    }
+
     const query = {
       id,
     } as FindOptionsWhere<ENTITY>;
@@ -41,6 +46,7 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    */
   async create(request: ENTITY): Promise<ENTITY> {
     this.beforeSavingDatabase(request);
+    request.createdAt = new Date();
     const ent: ENTITY = await this.repository.save(request);
     this.beforeSendingEntity(ent);
 
@@ -53,10 +59,11 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    */
   async update(request: ENTITY): Promise<ENTITY> {
     if (request.id == null) {
-      throw new BadRequestError();
+      throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_ID);
     }
 
     this.beforeSavingDatabase(request);
+    request.updatedAt = new Date();
     const ent: ENTITY = await this.repository.save(request);
     this.beforeSendingEntity(ent);
 
@@ -68,6 +75,10 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    * @param entId
    */
   async remove(entId: number): Promise<DeleteResult> {
+    if (entId === null) {
+      throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_ID);
+    }
+
     const query = {
       id: entId,
     } as FindOptionsWhere<ENTITY>;
@@ -75,14 +86,14 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
     const search: ENTITY[] = await this.repository.findBy(query);
 
     if (search.length === 0) {
-      return null;
+      throw new NotFoundError();
     }
     const ent: ENTITY = search[0];
     this.beforeDeletingEntity(ent);
     const result: DeleteResult = await this.repository.delete(query);
 
     if (result.affected === undefined || result.affected === 0) {
-      throw new BadRequestError();
+      throw new NotFoundError();
     }
     return result;
   }

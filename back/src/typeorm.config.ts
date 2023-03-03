@@ -1,19 +1,24 @@
 import {TypeOrmModuleOptions} from '@nestjs/typeorm';
+import User from "./user/entities/user.entity";
 
 const commonConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'mysql',
-  port: 3306,
+  host: 'database',
+  port: 5432,
   username: 'root',
   password: 'root',
   database: 'js_fullstack_docker',
-  entities: ['src/**/**.entity{.ts,.js}'],
-  synchronize: true,
+  entities: [User],
+  migrations: ['./migrations/*.ts'],
+  synchronize: false
 };
 
 const developmentConfig: TypeOrmModuleOptions = {
   ...commonConfig,
+  host: '127.0.0.1',
   database: 'js_fullstack',
+  synchronize: true,
+  logging: true
 };
 
 const testConfig: TypeOrmModuleOptions = {
@@ -21,7 +26,7 @@ const testConfig: TypeOrmModuleOptions = {
   database: ':memory:',
   synchronize: true,
   logging: false,
-  entities: ['src/**/**.entity{.ts,.js}'],
+  entities: ['./**/entities/*.ts'],
 };
 
 export { commonConfig, developmentConfig, testConfig };

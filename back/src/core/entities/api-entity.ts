@@ -7,7 +7,7 @@ export default abstract class ApiEntity {
   @Column({ name: 'created_at', nullable: false })
     createdAt: Date;
 
-  @Column({ name: 'updated_at' })
+  @Column({ name: 'updated_at', nullable: true })
     updatedAt: Date;
 
   @BeforeInsert()

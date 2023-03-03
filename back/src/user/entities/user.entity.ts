@@ -15,6 +15,6 @@ export default class User extends ApiEntity {
   @Column({ length: 250, nullable: false })
     address: string;
 
-  @Column({ name: 'is_active' })
+  @Column({ name: 'is_active', default: true })
     isActive: boolean;
 }
