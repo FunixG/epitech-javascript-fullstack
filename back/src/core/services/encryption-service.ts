@@ -15,9 +15,9 @@ export default class EncryptionService {
     return bcrypt.hashSync(data, this.salt);
   }
 
-  /* async compare(data: string, hash: string): Promise<boolean> {
+  compare(data: string, hash: string): boolean {
     return bcrypt.compareSync(data, hash);
-  } */
+  }
 
   private static getSalt(): string {
     if (!this.secretFileExists()) {
