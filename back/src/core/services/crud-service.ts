@@ -13,7 +13,7 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    * @param repository
    * @protected
    */
-  protected constructor(private repository: Repository<ENTITY>) {
+  protected constructor(protected repository: Repository<ENTITY>) {
   }
 
   /**
@@ -36,8 +36,17 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
       throw new NotFoundError();
     }
     const ent: ENTITY = search[0];
-    this.beforeSendingEntity(ent);
+    await this.beforeSendingEntity(ent);
     return ent;
+  }
+
+  async getBySearch(search: FindOptionsWhere<ENTITY>): Promise<ENTITY[]> {
+    const entities: ENTITY[] = await this.repository.findBy(search);
+
+    await Promise.all(entities.map(async (entity: ENTITY) => {
+      await this.beforeSendingEntity(entity);
+    }));
+    return entities;
   }
 
   /**
@@ -45,12 +54,17 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    * @param request
    */
   async create(request: ENTITY): Promise<ENTITY> {
-    this.beforeSavingDatabase(request);
-    request.createdAt = new Date();
-    const ent: ENTITY = await this.repository.save(request);
-    this.beforeSendingEntity(ent);
+    await this.beforeSavingDatabase(request);
 
-    return ent;
+    request.createdAt = new Date();
+
+    try {
+      const ent: ENTITY = await this.repository.save(request);
+      await this.beforeSendingEntity(ent);
+      return ent;
+    } catch (error) {
+      throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_REQUIRED_PARTS);
+    }
   }
 
   /**
@@ -62,12 +76,16 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
       throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_ID);
     }
 
-    this.beforeSavingDatabase(request);
+    await this.beforeSavingDatabase(request);
     request.updatedAt = new Date();
-    const ent: ENTITY = await this.repository.save(request);
-    this.beforeSendingEntity(ent);
 
-    return ent;
+    try {
+      const ent: ENTITY = await this.repository.save(request);
+      await this.beforeSendingEntity(ent);
+      return ent;
+    } catch (error) {
+      throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_REQUIRED_PARTS);
+    }
   }
 
   /**
@@ -89,7 +107,7 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
       throw new NotFoundError();
     }
     const ent: ENTITY = search[0];
-    this.beforeDeletingEntity(ent);
+    await this.beforeDeletingEntity(ent);
     const result: DeleteResult = await this.repository.delete(query);
 
     if (result.affected === undefined || result.affected === 0) {

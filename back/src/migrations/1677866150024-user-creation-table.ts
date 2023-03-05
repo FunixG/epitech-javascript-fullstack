@@ -14,6 +14,7 @@ export default class UserCreationTable1677866150024 implements MigrationInterfac
             + '    password   varchar(500)         not null,\n'
             + '    email      varchar(50)          not null,\n'
             + '    address    varchar(250)         not null,\n'
+            + '    role       varchar(100)         not null,\n'
             + '    is_active  boolean default true not null\n'
             + ');');
     this.logger.log('users table created');
