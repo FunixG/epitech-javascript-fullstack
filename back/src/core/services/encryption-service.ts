@@ -15,7 +15,7 @@ export default class EncryptionService {
     return bcrypt.hashSync(data, this.salt);
   }
 
-  compare(data: string, hash: string): boolean {
+  static compare(data: string, hash: string): boolean {
     return bcrypt.compareSync(data, hash);
   }
 

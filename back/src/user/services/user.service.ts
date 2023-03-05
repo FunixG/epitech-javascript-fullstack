@@ -1,23 +1,23 @@
 import {Injectable, Logger} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {FindOptionsWhere, Repository} from 'typeorm';
+import {JwtService} from '@nestjs/jwt';
 import CrudService from '../../core/services/crud-service';
 import User from '../entities/user.entity';
 import EncryptionService from '../../core/services/encryption-service';
-import BadRequestError from "../../core/errors/bad-request-error";
-import TranslocoKeys from "../../core/transloco-keys";
-import NotFoundError from "../../core/errors/not-found-error";
-import {JwtService} from "@nestjs/jwt";
-import UserTokenDto from "../dtos/user-token.dto";
+import BadRequestError from '../../core/errors/bad-request-error';
+import TranslocoKeys from '../../core/transloco-keys';
+import NotFoundError from '../../core/errors/not-found-error';
+import UserTokenDto from '../dtos/user-token.dto';
 
 @Injectable()
 export default class UserService extends CrudService<User> {
   private readonly logger = new Logger(UserService.name);
 
   constructor(
-      @InjectRepository(User) repository: Repository<User>,
-      private encryptionService: EncryptionService,
-      private jwtService: JwtService
+  @InjectRepository(User) repository: Repository<User>,
+    private encryptionService: EncryptionService,
+    private jwtService: JwtService,
   ) {
     super(repository);
   }
@@ -67,7 +67,7 @@ export default class UserService extends CrudService<User> {
 
   public async findUser(username: string): Promise<User> {
     const search = {
-      username: username
+      username,
     } as FindOptionsWhere<User>;
 
     const users: User[] = await this.repository.findBy(search);
@@ -79,14 +79,18 @@ export default class UserService extends CrudService<User> {
     }
   }
 
-  public validatePasswords(databasePassword: string, toCompare: string): void {
-    if (!this.encryptionService.compare(toCompare, databasePassword)) {
+  public static validatePasswords(databasePassword: string, toCompare: string): void {
+    if (!EncryptionService.compare(toCompare, databasePassword)) {
       throw new BadRequestError(TranslocoKeys.BAD_REQUEST_INVALID_PASSWORD);
     }
   }
 
+  /**
+   * lint ignore because we need to hide password
+   * @param user
+   */
   public async generateAccessToken(user: User): Promise<UserTokenDto> {
-    let roles: string[] = ['user'];
+    const roles: string[] = ['user'];
     if (user.role !== 'user') {
       roles.push(user.role);
     }
@@ -96,13 +100,13 @@ export default class UserService extends CrudService<User> {
     const payload = {
       sub: user.id.toString(),
       username: user.username,
-      roles: roles,
-    }
+      roles,
+    };
 
     const accessToken = await this.jwtService.signAsync(payload);
 
     const token: UserTokenDto = new UserTokenDto();
-    user.password = null;
+    user.password = null; // eslint-disable-line no-param-reassign
     token.user = user;
     token.accessToken = accessToken;
     token.generatedAt = now;
@@ -112,7 +116,7 @@ export default class UserService extends CrudService<User> {
 
   private async userExists(username: string): Promise<boolean> {
     const search = {
-      username: username
+      username,
     };
 
     const users: User[] = await this.getBySearch(search);

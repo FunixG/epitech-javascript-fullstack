@@ -1,8 +1,11 @@
-import User from "../entities/user.entity";
+import User from '../entities/user.entity';
 
 export default class UserTokenDto {
-    user: User;
-    accessToken: string;
-    generatedAt: number;
-    expiresAt: number;
+  user: User;
+
+  accessToken: string;
+
+  generatedAt: number;
+
+  expiresAt: number;
 }

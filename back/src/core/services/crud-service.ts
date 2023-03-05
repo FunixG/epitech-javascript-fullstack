@@ -43,9 +43,9 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
   async getBySearch(search: FindOptionsWhere<ENTITY>): Promise<ENTITY[]> {
     const entities: ENTITY[] = await this.repository.findBy(search);
 
-    for (let i = 0; i < entities.length; ++i) {
-      await this.beforeSendingEntity(entities[i]);
-    }
+    await Promise.all(entities.map(async (entity: ENTITY) => {
+      await this.beforeSendingEntity(entity);
+    }));
     return entities;
   }
 
