@@ -49,6 +49,7 @@ export default class UserService extends CrudService<User> {
       if (await this.userExists(request.username)) {
         throw new BadRequestError(TranslocoKeys.BAD_REQUEST_USER_EXISTS);
       }
+      request.role = 'user';
     }
 
     request.password = this.encryptionService.encrypt(request.password);
@@ -96,8 +97,6 @@ export default class UserService extends CrudService<User> {
       sub: user.id.toString(),
       username: user.username,
       roles: roles,
-      iat: now,
-      exp: expiration
     }
 
     const accessToken = await this.jwtService.signAsync(payload);
