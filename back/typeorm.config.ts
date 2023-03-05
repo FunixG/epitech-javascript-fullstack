@@ -1,5 +1,6 @@
 import {DataSource} from "typeorm";
 import User from "./src/user/entities/user.entity";
+import Product from "./src/products/entities/product.entity";
 
 export default new DataSource({
     type: 'postgres',
@@ -8,7 +9,7 @@ export default new DataSource({
     username: 'root',
     password: 'root',
     database: 'js_fullstack_docker',
-    entities: [User],
+    entities: [User, Product],
     migrations: ['./src/migrations/*.ts'],
     synchronize: false,
 });
