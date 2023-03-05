@@ -11,7 +11,7 @@ ADD package.json .
 ADD package-lock.json .
 ADD tsconfig.build.json .
 ADD tsconfig.json .
-ADD ormconfig-prod.ts .
+ADD typeorm.config.ts .
 ADD docker-back-js-fullstack/entrypoint.sh /entrypoint.sh
 
 RUN npm ci

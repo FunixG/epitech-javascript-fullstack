@@ -26,7 +26,7 @@ const testConfig: TypeOrmModuleOptions = {
   database: ':memory:',
   synchronize: true,
   logging: false,
-  entities: ['./**/entities/*.ts'],
+  entities: [User],
 };
 
 export { commonConfig, developmentConfig, testConfig };
