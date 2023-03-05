@@ -4,6 +4,7 @@ import {ConfigModule, ConfigService} from '@nestjs/config';
 import UserModule from './user/user.module';
 import StatusController from './status.controller';
 import {commonConfig, developmentConfig, testConfig} from './typeorm.config';
+import ProductsModule from './products/products.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import {commonConfig, developmentConfig, testConfig} from './typeorm.config';
       inject: [ConfigService],
     }),
     UserModule,
+    ProductsModule,
   ],
   controllers: [StatusController],
 })
