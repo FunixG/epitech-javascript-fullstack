@@ -4,7 +4,7 @@ import {Injectable} from "@nestjs/common";
 import JwtPayload from "../entities/jwt-payload";
 import UserService from "./user.service";
 import User from "../entities/user.entity";
-import fs from "fs";
+import * as fs from 'fs';
 import * as bcrypt from 'bcrypt';
 import ApiException from "../../core/errors/api-error";
 
