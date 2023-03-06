@@ -5,6 +5,7 @@ import UserModule from './user/user.module';
 import StatusController from './status.controller';
 import {commonConfig, developmentConfig, testConfig} from './typeorm.config';
 import ProductsModule from './products/products.module';
+import PurchasesModule from './purchases/purchases.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import ProductsModule from './products/products.module';
     }),
     UserModule,
     ProductsModule,
+    PurchasesModule,
   ],
   controllers: [StatusController],
 })

@@ -12,15 +12,15 @@ export default class ProductsService extends CrudService<Product> {
     super(repository);
   }
 
-  beforeSavingDatabase(request: Product): void {
+  async beforeSavingDatabase(request: Product): Promise<void> {
     this.logger.log(`save product ${request.name}`);
   }
 
-  beforeDeletingEntity(entity: Product): void {
+  async beforeDeletingEntity(entity: Product): Promise<void> {
     this.logger.log(`remove product ${entity.name}`);
   }
 
-  beforeSendingEntity(entity: Product): void {
+  async beforeSendingEntity(entity: Product): Promise<void> {
     this.logger.log(`product requested ${entity.name}`);
   }
 }

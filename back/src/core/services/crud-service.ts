@@ -116,9 +116,9 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
     return result;
   }
 
-  abstract beforeSavingDatabase(request: ENTITY): void;
+  abstract beforeSavingDatabase(request: ENTITY): Promise<void>;
 
-  abstract beforeDeletingEntity(entity: ENTITY): void;
+  abstract beforeDeletingEntity(entity: ENTITY): Promise<void>;
 
-  abstract beforeSendingEntity(entity: ENTITY): void;
+  abstract beforeSendingEntity(entity: ENTITY): Promise<void>;
 }

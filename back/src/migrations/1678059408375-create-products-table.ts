@@ -11,7 +11,7 @@ export default class CreateProductsTable1678059408375 implements MigrationInterf
             + '    created_at   timestamp        not null,\n'
             + '    updated_at   timestamp,\n'
             + '    name         varchar(100)     not null,\n'
-            + '    "urlPicture" varchar(1000)    not null,\n'
+            + '    url_picture  varchar(1000)    not null,\n'
             + '    description  varchar(10000)   not null,\n'
             + '    price        double precision not null,\n'
             + '    category     varchar(300)     not null\n'

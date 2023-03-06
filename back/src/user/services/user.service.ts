@@ -22,7 +22,7 @@ export default class UserService extends CrudService<User> {
     super(repository);
   }
 
-  beforeDeletingEntity(entity: User): void {
+  async beforeDeletingEntity(entity: User): Promise<void> {
     this.logger.log('User {} is removing.', entity.username);
   }
 
@@ -49,7 +49,12 @@ export default class UserService extends CrudService<User> {
       if (await this.userExists(request.username)) {
         throw new BadRequestError(TranslocoKeys.BAD_REQUEST_USER_EXISTS);
       }
-      request.role = 'user';
+
+      if (request.id === undefined || request.id === null) {
+        request.role = 'user';
+      } else if (request.role === null) {
+        throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_ROLE);
+      }
     }
 
     request.password = this.encryptionService.encrypt(request.password);
@@ -60,7 +65,7 @@ export default class UserService extends CrudService<User> {
    * Here we want to hide the user password when sending data to client
    * @param entity
    */
-  beforeSendingEntity(entity: User): void {
+  async beforeSendingEntity(entity: User): Promise<void> {
     this.logger.log('Sending data about user {}', entity.username);
     entity.password = null; // eslint-disable-line no-param-reassign
   }
