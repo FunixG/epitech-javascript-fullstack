@@ -34,6 +34,7 @@ import UserAuthService from './services/user-auth.service';
   exports: [
     PassportModule,
     JwtAuthGuard,
+    UserService,
   ],
 })
 export default class UserModule {}

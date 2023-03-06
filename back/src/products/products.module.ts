@@ -14,5 +14,8 @@ import Product from './entities/product.entity';
   controllers: [
     ProductsController,
   ],
+  exports: [
+    ProductsService,
+  ],
 })
 export default class ProductsModule {}

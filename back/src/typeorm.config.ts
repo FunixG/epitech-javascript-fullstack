@@ -1,6 +1,7 @@
 import {TypeOrmModuleOptions} from '@nestjs/typeorm';
 import User from './user/entities/user.entity';
 import Product from './products/entities/product.entity';
+import Purchase from './purchases/entities/purchase.entity';
 
 const commonConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -9,7 +10,7 @@ const commonConfig: TypeOrmModuleOptions = {
   username: 'root',
   password: 'root',
   database: 'js_fullstack_docker',
-  entities: [User, Product],
+  entities: [User, Product, Purchase],
   migrations: ['./migrations/*.ts'],
   synchronize: false,
 };
@@ -27,7 +28,7 @@ const testConfig: TypeOrmModuleOptions = {
   database: ':memory:',
   synchronize: true,
   logging: false,
-  entities: [User, Product],
+  entities: [User, Product, Purchase],
 };
 
 export { commonConfig, developmentConfig, testConfig };
