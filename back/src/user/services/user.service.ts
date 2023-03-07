@@ -84,6 +84,12 @@ export default class UserService extends CrudService<User> {
     }
   }
 
+  public async findUserByJwt(jwt: string): Promise<User> {
+    const decoded = this.jwtService.decode(jwt);
+    const { sub } = decoded;
+    return this.getById(Number(sub));
+  }
+
   public static validatePasswords(databasePassword: string, toCompare: string): void {
     if (!EncryptionService.compare(toCompare, databasePassword)) {
       throw new BadRequestError(TranslocoKeys.BAD_REQUEST_INVALID_PASSWORD);
