@@ -6,7 +6,7 @@ import StatusController from './status.controller';
 import {commonConfig, developmentConfig, testConfig} from './typeorm.config';
 import ProductsModule from './products/products.module';
 import PurchasesModule from './purchases/purchases.module';
-import WebsocketModule from "./websocket/websocket.module";
+import WebsocketModule from './websocket/websocket.module';
 
 @Module({
   imports: [
@@ -29,7 +29,7 @@ import WebsocketModule from "./websocket/websocket.module";
     }),
     UserModule,
     ProductsModule,
-    PurchasesModule
+    PurchasesModule,
   ],
   controllers: [StatusController],
 })
