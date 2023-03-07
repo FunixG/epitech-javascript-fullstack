@@ -1,5 +1,7 @@
 import {OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage} from '@nestjs/websockets';
 import * as WebSocket from 'ws';
+import {OnApplicationShutdown} from '@nestjs/common';
+import {clearInterval} from 'timers';
 import PingEntity from './ping.entity';
 import User from '../../user/entities/user.entity';
 import UserWebsocketEntity from './user.websocket.entity';
@@ -8,17 +10,24 @@ import UserService from '../../user/services/user.service';
 /**
  * impl class need to add WebSocketGateway annotation
  */
-export default abstract class ApiWebsocket implements OnGatewayConnection, OnGatewayDisconnect {
+export default abstract class ApiWebsocket implements OnGatewayConnection,
+    OnGatewayDisconnect, OnApplicationShutdown {
   private pingMap = new Map<string, PingEntity>();
 
   private clientUserMap = new Map<string, UserWebsocketEntity>();
 
   private sessionsMap = new Map<string, WebSocket>();
 
+  private readonly intervalId: NodeJS.Timeout;
+
   protected constructor(readonly userService: UserService) {
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.generatePingAndCheckZombies();
     }, 20000);
+  }
+
+  onApplicationShutdown(): void {
+    clearInterval(this.intervalId);
   }
 
   /**
@@ -59,7 +68,7 @@ export default abstract class ApiWebsocket implements OnGatewayConnection, OnGat
   }
 
   abstract onNewMessage(client: WebSocket, sessionId: string,
-                        user: UserWebsocketEntity | undefined, message: string): void;
+    user: UserWebsocketEntity | undefined, message: string): void;
 
   protected sendMessageToAdmins(message: string): boolean {
     let adminsReceived: number = 0;
