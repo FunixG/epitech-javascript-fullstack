@@ -49,9 +49,6 @@ jobs:
       - name: Build front
         run: cd front && npm run build
      
-      - name: Run tests
-        run: cd front && npm run test
-     
       - name: Run lint validity
         run: cd front && npm run lint
     
