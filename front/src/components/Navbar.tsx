@@ -40,9 +40,6 @@ function Navbar() {
                       <a className="nav-link" href="/products">Shop</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/contact">Contact Us</a>
-                    </li>
-                    <li className="nav-item">
                       <a className="nav-link" href="/purchases">Purchases</a>
                     </li>
                     <li className="nav-item d_none login_btn">

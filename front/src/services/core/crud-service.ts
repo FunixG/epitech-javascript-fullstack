@@ -6,7 +6,7 @@ import RequestInterface from './entities/request-interface';
 abstract class CrudService<ENTITY extends ApiEntity> {
   protected readonly domain: string;
 
-  protected readonly errorHandler: ErrorHandler = new ErrorHandler();
+  public readonly errorHandler: ErrorHandler = new ErrorHandler();
 
   private readonly apiHeader = {
     'Content-Type': 'application/json',
@@ -17,10 +17,11 @@ abstract class CrudService<ENTITY extends ApiEntity> {
     if (!path.endsWith('/')) {
       throw Error('The path passed in parameter is not valid. It need to be ended by /');
     }
-    this.domain = process.env.DOMAIN_API || 'https://epitech-api.funixgaming.fr/';
-    if (!this.domain.endsWith('/')) {
+    const domain: string | undefined = process.env.REACT_APP_API_URL;
+    if (!domain || !domain.endsWith('/')) {
       throw Error('The domain passed in env is not valid. It need to be ended by /');
     }
+    this.domain = domain;
   }
 
   async getAll(): Promise<ENTITY[] | undefined> {
