@@ -11,9 +11,12 @@ export default class CrudResource<ENTITY extends ApiEntity, SERVICE extends Crud
   constructor(protected service: SERVICE) {
   }
 
+  @Get()
+  async getAll(): Promise<ENTITY[]> {
+    return this.service.getAll();
+  }
+
   @Get(':id')
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesAuthGuard)
   async getById(@Param('id') id: number): Promise<ENTITY> {
     return this.service.getById(id);
   }

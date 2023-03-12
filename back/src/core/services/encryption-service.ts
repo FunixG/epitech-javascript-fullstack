@@ -28,7 +28,7 @@ export default class EncryptionService {
 
   private static secretFileExists(): boolean {
     try {
-      fs.accessSync('secret-encryption.key', fs.constants.F_OK);
+      fs.accessSync('keys/secret-encryption.key', fs.constants.F_OK);
       return true;
     } catch (err) {
       return false;
@@ -37,7 +37,7 @@ export default class EncryptionService {
 
   private static getSaltFromFile(): string {
     try {
-      return fs.readFileSync('secret-encryption.key', 'utf8');
+      return fs.readFileSync('keys/secret-encryption.key', 'utf8');
     } catch (err) {
       throw new ApiException();
     }
@@ -47,7 +47,10 @@ export default class EncryptionService {
     const newSalt: string = bcrypt.genSaltSync();
 
     try {
-      fs.writeFileSync('secret-encryption.key', newSalt, { encoding: 'utf8', flag: 'w' });
+      if (!fs.existsSync('keys')) {
+        fs.mkdirSync('keys');
+      }
+      fs.writeFileSync('keys/secret-encryption.key', newSalt, { encoding: 'utf8', flag: 'w' });
       return newSalt;
     } catch (err) {
       throw new ApiException();

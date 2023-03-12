@@ -13,6 +13,8 @@ export default class TranslocoKeys {
 
   static BAD_REQUEST_USER_EXISTS = 'server.bad-request-user-exists';
 
+  static BAD_REQUEST_JWT_INVALID = 'server.bad-request-jwt-invalid';
+
   static BAD_REQUEST_INVALID_PASSWORD = 'server.bad-request-invalid-password';
 
   static BAD_REQUEST_MISSING_REQUIRED_PARTS = 'server.bad-request-missing-required-parts';
