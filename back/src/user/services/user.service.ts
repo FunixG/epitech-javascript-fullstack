@@ -85,9 +85,16 @@ export default class UserService extends CrudService<User> {
   }
 
   public async findUserByJwt(jwt: string): Promise<User> {
-    const decoded = this.jwtService.decode(jwt);
-    const { sub } = decoded;
-    return this.getById(Number(sub));
+    try {
+      const decoded = this.jwtService.decode(jwt);
+      const {sub} = decoded;
+      const user: User = await this.getById(Number(sub));
+      user.password = null;
+
+      return user;
+    } catch (error) {
+      throw new BadRequestError(TranslocoKeys.BAD_REQUEST_JWT_INVALID);
+    }
   }
 
   public static validatePasswords(databasePassword: string, toCompare: string): void {
