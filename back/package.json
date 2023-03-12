@@ -25,7 +25,7 @@
     "typeorm:revert-migration": "npm run typeorm -- -d ./typeorm.config.ts migration:revert"
   },
   "dependencies": {
-    "@nestjs/common": "^9.0.0",
+    "@nestjs/common": "^9.3.9",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
     "@nestjs/jwt": "^10.0.2",
@@ -36,6 +36,7 @@
     "@nestjs/typeorm": "^9.0.1",
     "@nestjs/websockets": "^9.3.9",
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "mysql": "^2.18.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
