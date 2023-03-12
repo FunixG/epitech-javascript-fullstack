@@ -18,6 +18,9 @@ i18n.use(initReactI18next)
             register: {
               title: 'Account creation',
             },
+            login: {
+              title: 'Login',
+            },
             email: 'Email address',
             'email-holder': 'Enter email address',
             password: 'Password',
