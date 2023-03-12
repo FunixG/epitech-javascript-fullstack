@@ -22,7 +22,7 @@ function Banner() {
                     To Our Sunglasses
                   </h1>
                   <figure><img src="images/banner_img.png" alt="#" /></figure>
-                  <a className="read_more" href="/">Shop Now</a>
+                  <a className="read_more" href="/src/pages">Shop Now</a>
                 </div>
               </div>
             </div>
@@ -39,7 +39,7 @@ function Banner() {
                     To Our Sunglasses
                   </h1>
                   <figure><img src="images/banner_img.png" alt="#" /></figure>
-                  <a className="read_more" href="/">Shop Now</a>
+                  <a className="read_more" href="/src/pages">Shop Now</a>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ function Banner() {
                     To Our Sunglasses
                   </h1>
                   <figure><img src="images/banner_img.png" alt="#" /></figure>
-                  <a className="read_more" href="/">Shop Now</a>
+                  <a className="read_more" href="/src/pages">Shop Now</a>
                 </div>
               </div>
             </div>
