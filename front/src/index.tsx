@@ -11,6 +11,20 @@ i18n.use(initReactI18next)
         translation: {
           generic: {
             'read-more': 'Read more !',
+            submit: 'Submit',
+            'cant-reach-api': 'Server unavailable',
+          },
+          user: {
+            register: {
+              title: 'Account creation',
+            },
+            email: 'Email address',
+            'email-holder': 'Enter email address',
+            password: 'Password',
+            username: 'Username',
+            'username-holder': 'Enter username',
+            address: 'Address',
+            'address-holder': 'Enter Address',
           },
           home: {
             items: {
