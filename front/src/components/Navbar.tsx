@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
+import UserService from '../services/user/services/user-service';
+import UserDto from '../services/user/dto/user-dto';
 
 function Navbar() {
+  const { t } = useTranslation();
+  const [user, setData] = useState<UserDto | undefined>(undefined);
+  const userService = new UserService();
+  const location = useLocation();
+
+  useEffect(() => {
+    userService.actual().then((userDto) => {
+      if (userDto) {
+        setData(userDto);
+      } else {
+        setData(undefined);
+      }
+    }).catch(() => {
+      userService.errorHandler.onNewError('generic.cant-reach-api');
+    });
+  });
+
   return (
     <header>
       <div className="header">
@@ -30,36 +51,39 @@ function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarsExample04">
                   <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                      <a className="nav-link" href="/">Home</a>
+                    <li className={`nav-item ${location.pathname.endsWith('home') ? 'active' : ''}`}>
+                      <a className="nav-link" href="/">{t('navbar.home')}</a>
                     </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/about">About</a>
+                    <li className={`nav-item ${location.pathname.endsWith('about') ? 'active' : ''}`}>
+                      <a className="nav-link" href="/about">{t('navbar.about')}</a>
                     </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/products">Shop</a>
+                    <li className={`nav-item ${location.pathname.endsWith('products') ? 'active' : ''}`}>
+                      <a className="nav-link" href="/products">{t('navbar.products')}</a>
                     </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/purchases">Purchases</a>
-                    </li>
-                    <li className="nav-item d_none login_btn">
-                      <a className="nav-link" href="/login">Login</a>
-                    </li>
-                    <li className="nav-item d_none">
-                      <a className="nav-link" href="/register">Register</a>
-                    </li>
-                    <li className="nav-item d_none sea_icon">
-                      <a className="nav-link" href="/set">
-                        <i
-                          className="fa fa-shopping-bag"
-                          aria-hidden="true"
-                        />
-                        <i
-                          className="fa fa-search"
-                          aria-hidden="true"
-                        />
-                      </a>
-                    </li>
+                    {user ? (
+                      <>
+                        <li className={`nav-item ${location.pathname.endsWith('purchases') ? 'active' : ''}`}>
+                          <a className="nav-link" href="/purchases">{t('navbar.purchases')}</a>
+                        </li>
+                        <li className={`nav-item login_btn ${location.pathname.endsWith('account') ? 'active' : ''}`}>
+                          <a className="nav-link" href="/account">{t('navbar.account')}</a>
+                        </li>
+                        {user.role === 'admin' ? (
+                          <li className={`nav-item login_btn ${location.pathname.includes('admin') ? 'active' : ''}`}>
+                            <a className="nav-link" href="/admin">{t('navbar.admin')}</a>
+                          </li>
+                        ) : null}
+                      </>
+                    ) : (
+                      <>
+                        <li className={`nav-item d_none login_btn ${location.pathname.endsWith('login') ? 'active' : ''}`}>
+                          <a className="nav-link" href="/login">{t('navbar.login')}</a>
+                        </li>
+                        <li className={`nav-item d_none ${location.pathname.endsWith('register') ? 'active' : ''}`}>
+                          <a className="nav-link" href="/register">{t('navbar.register')}</a>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </nav>
