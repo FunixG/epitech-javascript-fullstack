@@ -9,6 +9,16 @@ i18n.use(initReactI18next)
     resources: {
       en: {
         translation: {
+          navbar: {
+            home: 'Home',
+            about: 'About',
+            products: 'Shop',
+            purchases: 'Purchases',
+            login: 'Login',
+            register: 'Register',
+            account: 'Account',
+            admin: 'Administration',
+          },
           generic: {
             'read-more': 'Read more !',
             submit: 'Submit',
