@@ -17,6 +17,18 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
   }
 
   /**
+   * Fetch all database
+   */
+  async getAll(): Promise<ENTITY[]> {
+    const list: ENTITY[] = await this.repository.find();
+
+    await Promise.all(list.map(async (entity: ENTITY) => {
+      await this.beforeSendingEntity(entity);
+    }));
+    return list;
+  }
+
+  /**
    * get an ent by id
    * Null if not found
    * @param id
