@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /node_modules
+docker-back-js-fullstack/container/
 
 # Logs
 logs
@@ -35,4 +36,5 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # All secret keys
+keys
 *.key

@@ -3,6 +3,7 @@ version: "3.8"
 services:
 
   postgres:
+    restart: always
     image: postgres
     container_name: postges_sql
     hostname: database
@@ -16,12 +17,15 @@ services:
       - "5432:5432"
 
   backend:
+    restart: always
     build:
       context: ..
       dockerfile: Dockerfile
     depends_on:
       postgres:
         condition: service_started
+    volumes:
+      - ./container/keys:/srv/build/container/keys
     container_name: backend_js
     hostname: backendjs
     environment:

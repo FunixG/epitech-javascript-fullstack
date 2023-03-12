@@ -31,7 +31,7 @@ export default class JwtStrategyAuthGard extends PassportStrategy(Strategy) {
 
   private static secretFileExists(): boolean {
     try {
-      fs.accessSync('secret-jwt.key', fs.constants.F_OK);
+      fs.accessSync('keys/secret-jwt.key', fs.constants.F_OK);
       return true;
     } catch (err) {
       return false;
@@ -40,7 +40,7 @@ export default class JwtStrategyAuthGard extends PassportStrategy(Strategy) {
 
   private static getSaltFromFile(): string {
     try {
-      return fs.readFileSync('secret-jwt.key', 'utf8');
+      return fs.readFileSync('keys/secret-jwt.key', 'utf8');
     } catch (err) {
       throw new ApiException();
     }
@@ -50,7 +50,10 @@ export default class JwtStrategyAuthGard extends PassportStrategy(Strategy) {
     const newSalt: string = bcrypt.genSaltSync();
 
     try {
-      fs.writeFileSync('secret-jwt.key', newSalt, { encoding: 'utf8', flag: 'w' });
+      if (!fs.existsSync('keys')) {
+        fs.mkdirSync('keys');
+      }
+      fs.writeFileSync('keys/secret-jwt.key', newSalt, { encoding: 'utf8', flag: 'w' });
       return newSalt;
     } catch (err) {
       throw new ApiException();
