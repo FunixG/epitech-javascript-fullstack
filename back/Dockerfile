@@ -14,6 +14,7 @@ ADD tsconfig.json .
 ADD typeorm.config.ts .
 ADD docker-back-js-fullstack/entrypoint.sh /entrypoint.sh
 
+RUN sed -i 's/\r$//' /entrypoint.sh
 RUN npm ci
 RUN npm run build
 

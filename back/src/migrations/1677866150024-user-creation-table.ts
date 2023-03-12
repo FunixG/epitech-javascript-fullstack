@@ -9,7 +9,7 @@ export default class UserCreationTable1677866150024 implements MigrationInterfac
             + '(\n'
             + '    id         serial constraint "unique_id_key_users" primary key,\n'
             + '    created_at timestamp            not null,\n'
-            + '    updated_at timestamp            not null,\n'
+            + '    updated_at timestamp,\n'
             + '    username   varchar(255)         not null,\n'
             + '    password   varchar(500)         not null,\n'
             + '    email      varchar(50)          not null,\n'
