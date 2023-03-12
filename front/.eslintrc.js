@@ -9,6 +9,11 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  settings: {
+    'import/core-modules': [
+      'react-router-dom',
+    ],
+  },
   env: {
     browser: true,
     jest: true,
