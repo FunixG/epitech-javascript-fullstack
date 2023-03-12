@@ -31,6 +31,10 @@ i18n.use(initReactI18next)
             login: {
               title: 'Login',
             },
+            purchases: {
+              title: 'Your purchases',
+              text: 'This is the list of your past purchases',
+            },
             email: 'Email address',
             'email-holder': 'Enter email address',
             password: 'Password',
