@@ -21,10 +21,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/user/register",
+					"raw": "localhost:7575/user/register",
 					"host": [
 						"localhost"
 					],
+					"port": "7575",
 					"path": [
 						"user",
 						"register"
@@ -48,10 +49,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/user/login",
+					"raw": "localhost:7575/user/login",
 					"host": [
 						"localhost"
 					],
+					"port": "7575",
 					"path": [
 						"user",
 						"login"
@@ -104,12 +106,42 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost/user",
+					"raw": "localhost:7575/user",
 					"host": [
 						"localhost"
 					],
+					"port": "7575",
 					"path": [
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost/user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJpYXQiOjE2Nzg2NDEyMDksImV4cCI6MTY3ODY0NDgwOX0.ELwojL_iD_UE2UvXMtDim_9BGUQhi8qvNjscjG6ega8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:7575/user/2",
+					"host": [
+						"localhost"
+					],
+					"port": "7575",
+					"path": [
+						"user",
+						"2"
 					]
 				}
 			},
