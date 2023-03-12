@@ -1,6 +1,9 @@
 # epitech-javascript-fullstack
 Epitech project about creating a fullstack application using javascript
 
+[Backend Documentation](/back)
+[Front Documenation](/front)
+
 General
 - * You should have a server and a client in 2 separate git repository
 - The design and responsive capability of your site will be scored
