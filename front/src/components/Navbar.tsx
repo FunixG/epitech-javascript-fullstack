@@ -54,9 +54,6 @@ function Navbar() {
                     <li className={`nav-item ${location.pathname.endsWith('home') ? 'active' : ''}`}>
                       <a className="nav-link" href="/">{t('navbar.home')}</a>
                     </li>
-                    <li className={`nav-item ${location.pathname.endsWith('about') ? 'active' : ''}`}>
-                      <a className="nav-link" href="/about">{t('navbar.about')}</a>
-                    </li>
                     <li className={`nav-item ${location.pathname.endsWith('products') ? 'active' : ''}`}>
                       <a className="nav-link" href="/products">{t('navbar.products')}</a>
                     </li>

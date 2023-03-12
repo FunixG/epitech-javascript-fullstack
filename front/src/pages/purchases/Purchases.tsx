@@ -28,7 +28,6 @@ function Purchases() {
         }).catch(() => {
           userService.errorHandler.onNewError('generic.cant-reach-api');
         });
-        setPurchases(data);
       }
     }).catch(() => {
       userService.errorHandler.onNewError('generic.cant-reach-api');

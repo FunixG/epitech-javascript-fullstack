@@ -43,6 +43,10 @@ i18n.use(initReactI18next)
             address: 'Address',
             'address-holder': 'Enter Address',
           },
+          products: {
+            title: 'Articles list',
+            text: 'This is the list of best available articles',
+          },
           home: {
             items: {
               'our-glasses': 'Our Glasses',

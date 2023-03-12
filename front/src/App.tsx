@@ -4,7 +4,6 @@ import {
 } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Layout from './Layout';
-import About from './pages/about/About';
 import Products from './pages/products/Products';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
@@ -17,7 +16,6 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/user" element={<User />} />
