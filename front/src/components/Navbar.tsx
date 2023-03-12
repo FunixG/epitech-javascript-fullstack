@@ -31,19 +31,19 @@ function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarsExample04">
                   <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                      <a className="nav-link" href="index.html">Home</a>
+                      <a className="nav-link" href="/">Home</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="about.html">About</a>
+                      <a className="nav-link" href="/about">About</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="glasses.html">Our Glasses</a>
+                      <a className="nav-link" href="/products">Shop</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="shop.html">Shop</a>
+                      <a className="nav-link" href="/contact">Contact Us</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="contact.html">Contact Us</a>
+                      <a className="nav-link" href="/purchases">Purchases</a>
                     </li>
                     <li className="nav-item d_none login_btn">
                       <a className="nav-link" href="/login">Login</a>
