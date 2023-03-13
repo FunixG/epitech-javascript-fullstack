@@ -27,7 +27,7 @@ function Products() {
     if (productId) {
       purchaseService.payment(productId).then((purchaseDone) => {
         if (purchaseDone && purchaseDone.product && purchaseDone.product.name) {
-          store.dispatch(addCard(Math.floor(Math.random() * 10000), `${t('user.purchases.success')} ${purchaseDone.product.name}`));
+          store.dispatch(addCard(Math.floor(Math.random() * 10000), 'user.purchases.success'));
         }
       }).catch(() => {
         ErrorHandler.onNewError('generic.cant-reach-api');

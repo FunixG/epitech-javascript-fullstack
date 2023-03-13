@@ -11,6 +11,9 @@ i18n.use(initReactI18next)
     resources: {
       en: {
         translation: {
+          alert: {
+            title: 'Alert',
+          },
           navbar: {
             home: 'Home',
             about: 'About',
@@ -36,7 +39,7 @@ i18n.use(initReactI18next)
             purchases: {
               title: 'Your purchases',
               text: 'This is the list of your past purchases',
-              success: 'You succesfully bought',
+              success: 'You successfully bought an item !',
             },
             email: 'Email address',
             'email-holder': 'Enter email address',
