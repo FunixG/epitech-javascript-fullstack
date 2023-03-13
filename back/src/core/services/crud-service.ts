@@ -11,16 +11,20 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
   /**
    * you will need to add anotation to the parameter repository InjectRepository(ENTITY)
    * @param repository
+   * @param relations
    * @protected
    */
-  protected constructor(protected repository: Repository<ENTITY>) {
+  protected constructor(protected repository: Repository<ENTITY>,
+                        protected relations: string[] = []) {
   }
 
   /**
    * Fetch all database
    */
   async getAll(): Promise<ENTITY[]> {
-    const list: ENTITY[] = await this.repository.find();
+    const list: ENTITY[] = await this.repository.find({
+      relations: this.relations
+    });
 
     await Promise.all(list.map(async (entity: ENTITY) => {
       await this.beforeSendingEntity(entity);

@@ -19,7 +19,7 @@ export default class PurchasesService extends CrudService<Purchase> {
     private readonly userService: UserService,
     private readonly productService: ProductsService,
   ) {
-    super(repository);
+    super(repository, ['user', 'product']);
   }
 
   async beforeDeletingEntity(entity: Purchase): Promise<void> {
