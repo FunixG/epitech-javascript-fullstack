@@ -1,8 +1,18 @@
 {
+  "Unauthorized": "Vous n'avez pas la permission",
   "admin": {
     "btn-users": "Utilisateurs",
+    "btn-delete": "Supprimer",
+    "name": "Nom",
+    "price": "Prix",
+    "url-pic": "Url d'image",
+    "description": "Description",
+    "action": "Actions",
+    "user-role": "Role",
+    "btn-set-admin": "Mettre admin",
     "btn-products": "Produits",
-    "command-nbr": "Nombre de commandes"
+    "command-nbr": "Nombre de commandes",
+    "create-product": "Créer un nouveau produit"
   },
   "server": {
     "entity": {
@@ -22,7 +32,11 @@
   },
   "alert": {
     "title": "Alerte",
-    "lang-switch": "Vous avez changé de langue"
+    "lang-switch": "Vous avez changé de langue",
+    "user-removed": "Vous avez supprimé un utilisateur.",
+    "user-updated": "Vous avez modifié un utilisateur.",
+    "product-updated": "Vous avez modifié un produit.",
+    "product-removed": "Vous avez supprimé un utilisateur."
   },
   "navbar": {
     "home": "Home",

@@ -1,0 +1,31 @@
+.entity-tab {
+    margin: 20px;
+}
+
+.entity-tab table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.entity-tab th,
+.entity-tab td {
+    padding: 10px;
+    text-align: left;
+}
+
+.entity-tab th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+.entity-tab td {
+    border-bottom: 1px solid #ccc;
+}
+
+.entity-tab button {
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+

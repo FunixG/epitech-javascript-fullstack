@@ -1,12 +1,12 @@
-.container {
+.container-admin {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 40vh;
+    height: 60vh;
 }
 
-.sidebar {
+.sidebar-admin {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,11 +16,11 @@
     background-color: #f0f0f0;
 }
 
-.sidebar button {
+.sidebar-admin button {
     margin-bottom: 20px;
 }
 
-.card {
+.card-admin {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,12 +32,12 @@
     box-shadow: 0px 0px 10px #ccc;
 }
 
-.card h1 {
+.card-admin h1 {
     font-size: 2em;
     margin-top: 0;
 }
 
-.card p {
+.card-admin p {
     font-size: 4em;
     margin-top: 0;
 }

@@ -1,8 +1,18 @@
 {
+  "Unauthorized": "You don't have permission.",
   "admin": {
     "btn-users": "Users",
+    "btn-delete": "Delete",
+    "action": "Actions",
+    "name": "Name",
+    "price": "Price",
+    "url-pic": "Picture URL",
+    "description": "Description",
+    "user-role": "Role",
     "btn-products": "Products",
-    "command-nbr": "Number of Commands"
+    "btn-set-admin": "Set admin",
+    "command-nbr": "Number of Commands",
+    "create-product": "Create new product"
   },
   "server": {
     "entity": {
@@ -22,7 +32,11 @@
   },
   "alert": {
     "title": "Alert",
-    "lang-switch": "Success switch lang"
+    "lang-switch": "Success switch lang",
+    "user-removed": "You successfully removed a user.",
+    "user-updated": "You successfully updated a user.",
+    "product-updated": "You successfully updated a product.",
+    "product-removed": "You successfully updated a product."
   },
   "navbar": {
     "home": "Home",

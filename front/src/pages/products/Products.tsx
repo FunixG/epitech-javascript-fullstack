@@ -63,6 +63,7 @@ function Products() {
                   {product.price}
                 </h3>
                 <p>{product.name}</p>
+                <p>{product.description}</p>
                 <button type="button" onClick={() => purchase(product.id)} className="btn btn-info">
                   {t('products.buy')}
                 </button>

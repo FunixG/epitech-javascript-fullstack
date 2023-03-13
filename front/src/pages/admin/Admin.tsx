@@ -20,16 +20,19 @@ function Admin() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="sidebar">
+    <div className="container-admin">
+      <div className="sidebar-admin">
         <button type="button" className="btn btn-info">
-          <a href="/admin/users">{t('admin.btn-users')}</a>
+          <a href="/adminusers">{t('admin.btn-users')}</a>
         </button>
         <button type="button" className="btn btn-info">
-          <a href="/admin/products">{t('admin.btn-products')}</a>
+          <a href="/adminproducts">{t('admin.btn-products')}</a>
+        </button>
+        <button type="button" className="btn btn-info">
+          <a href="/admincreateproducts">{t('admin.create-product')}</a>
         </button>
       </div>
-      <div className="card">
+      <div className="card-admin">
         <h1>{t('admin.command-nbr')}</h1>
         <p>{commandAmount}</p>
       </div>
