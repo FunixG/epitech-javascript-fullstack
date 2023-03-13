@@ -5,7 +5,7 @@ import ProductDto from '../../services/products/dto/product-dto';
 import PurchasesService from '../../services/purchases/services/purchases-service';
 import store from '../../components/global/store';
 import { addCard } from '../../components/global/actions';
-import ErrorHandler from "../../services/core/error-handler";
+import ErrorHandler from '../../services/core/error-handler';
 
 function Products() {
   const { t } = useTranslation();

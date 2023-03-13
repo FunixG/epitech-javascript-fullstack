@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import UserService from '../../services/user/services/user-service';
 import PurchaseDto from '../../services/purchases/dto/purchase-dto';
 import PurchasesService from '../../services/purchases/services/purchases-service';
-import ErrorHandler from "../../services/core/error-handler";
+import ErrorHandler from '../../services/core/error-handler';
 
 function Purchases() {
   const { t } = useTranslation();

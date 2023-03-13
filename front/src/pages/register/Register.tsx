@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import UserDto from '../../services/user/dto/user-dto';
 import UserService from '../../services/user/services/user-service';
-import ErrorHandler from "../../services/core/error-handler";
+import ErrorHandler from '../../services/core/error-handler';
 
 function Register() {
   const { t } = useTranslation();
