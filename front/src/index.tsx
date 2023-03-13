@@ -46,6 +46,7 @@ i18n.use(initReactI18next)
           products: {
             title: 'Articles list',
             text: 'This is the list of best available articles',
+            buy: 'Buy',
           },
           home: {
             items: {

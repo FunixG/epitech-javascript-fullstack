@@ -61,7 +61,7 @@ function Products() {
                 </h3>
                 <p>{product.name}</p>
                 <button type="button" onClick={() => purchase(product.id)} className="btn btn-info">
-                  Acheter
+                  {t('products.buy')}
                 </button>
               </div>
             </div>
