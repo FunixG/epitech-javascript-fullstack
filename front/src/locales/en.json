@@ -1,4 +1,20 @@
 {
+  "server": {
+    "entity": {
+      "not_found": "Entity not found."
+    },
+    "bad-request": "You made a wrong request. Please check your form.",
+    "bad-request-missing-id": "Missing request id",
+    "bad-request-missing-username": "Missing username",
+    "bad-request-missing-password": "Missing password",
+    "bad-request-missing-role": "Missing role",
+    "bad-request-user-exists": "This user alerady exists",
+    "bad-request-jwt-invalid": "Auth session expired, please re login.",
+    "bad-request-invalid-password": "Invalid password.",
+    "bad-request-missing-required-parts": "Form invalid",
+    "bad-request-not-patchable-entity": "This entity can't be updated.",
+    "internal-error": "The server has a terrible error, please contact admins."
+  },
   "alert": {
     "title": "Alert",
     "lang-switch": "Success switch lang"

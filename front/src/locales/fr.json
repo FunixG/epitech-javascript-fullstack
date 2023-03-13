@@ -1,4 +1,20 @@
 {
+  "server": {
+    "entity": {
+      "not_found": "Entité introuvable."
+    },
+    "bad-request": "Votre requête est invalide, veuillez vérifier votre formulaire.",
+    "bad-request-missing-id": "Il manque l'identidiant unique.",
+    "bad-request-missing-username": "Il manque l'identifiant",
+    "bad-request-missing-password": "Il manque le mot de passe",
+    "bad-request-missing-role": "Il manque le rôle",
+    "bad-request-user-exists": "Cet utilisateur existe déjà",
+    "bad-request-jwt-invalid": "Votre session a expirée veuillez vous re connecter.",
+    "bad-request-invalid-password": "Mot de passe incorrect",
+    "bad-request-missing-required-parts": "Formulaire invalide",
+    "bad-request-not-patchable-entity": "Cette entité ne peut-pas être mise à jour.",
+    "internal-error": "Le serveur vient d'avoir une grosse erreur. Veuillez contacter les admins."
+  },
   "alert": {
     "title": "Alerte",
     "lang-switch": "Vous avez changé de langue"

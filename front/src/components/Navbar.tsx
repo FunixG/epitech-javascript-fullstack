@@ -1,4 +1,6 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent, useEffect, useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import UserService from '../services/user/services/user-service';
@@ -9,6 +11,7 @@ import { addCard } from './global/actions';
 
 function Navbar() {
   const { t } = useTranslation();
+  const [isActive, setIsActive] = useState(false);
   const [user, setData] = useState<UserDto | undefined>(undefined);
   const userService = new UserService();
   const location = useLocation();
@@ -32,6 +35,10 @@ function Navbar() {
       store.dispatch(addCard(Math.floor(Math.random() * 10000), 'alert.lang-switch'));
     }).catch(() => {
     });
+  }
+
+  function handleNavbarClick() {
+    setIsActive(!isActive);
   }
 
   return (
@@ -58,10 +65,11 @@ function Navbar() {
                   aria-controls="navbarsExample04"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
+                  onClick={handleNavbarClick}
                 >
                   <span className="navbar-toggler-icon" />
                 </button>
-                <div className="collapse navbar-collapse" id="navbarsExample04">
+                <div className={`navbar-collapse collapse ${isActive ? 'show' : ''}`} id="navbarsExample04">
                   <ul className="navbar-nav mr-auto">
                     <li className={`nav-item ${location.pathname.endsWith('home') ? 'active' : ''}`}>
                       <a className="nav-link" href="/">{t('navbar.home')}</a>
