@@ -31,7 +31,7 @@
 Go to the directory named docker-back-js-fullstack and run
 
 ```sh
-docker compose up --build
+docker-compose up --build
 ```
 
 You will have a postgres sql database up and running and a nest backend running on the port 7575.
