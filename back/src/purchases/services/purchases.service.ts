@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import {Injectable, Logger} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Repository} from 'typeorm';
 import Purchase from '../entities/purchase.entity';
 import CrudService from '../../core/services/crud-service';
 import UserService from '../../user/services/user.service';
@@ -38,7 +38,7 @@ export default class PurchasesService extends CrudService<Purchase> {
     request.user = user;
     request.product = product;
 
-    this.websocket.sendMessageToAdmins(`product-buy:${product.name}:${user.username}`);
+    this.websocket.broadcast(`product-buy:${product.name}:${user.username}`);
   }
 
   async beforeSendingEntity(entity: Purchase): Promise<void> {

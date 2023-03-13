@@ -61,7 +61,7 @@ export default class UserService extends CrudService<User> {
       }
     }
 
-    if (request.id === null) {
+    if (!request.id) {
       request.password = this.encryptionService.encrypt(request.password);
     } else {
       request.password = this.encryptionService.encrypt('admin');
