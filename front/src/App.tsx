@@ -8,7 +8,6 @@ import Products from './pages/products/Products';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Purchases from './pages/purchases/Purchases';
-import User from './pages/user/User';
 import Admin from './pages/admin/Admin';
 import AdminUsers from './pages/admin/users/AdminUsers';
 import AdminProducts from './pages/admin/produtcts/AdminProducts';
@@ -22,7 +21,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/purchases" element={<Purchases />} />
-          <Route path="/user" element={<User />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />

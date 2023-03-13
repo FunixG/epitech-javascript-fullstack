@@ -3,6 +3,7 @@
   "admin": {
     "btn-users": "Utilisateurs",
     "btn-delete": "Supprimer",
+    "btn-delete-purchases": "Supprimer achats",
     "name": "Nom",
     "price": "Prix",
     "url-pic": "Url d'image",

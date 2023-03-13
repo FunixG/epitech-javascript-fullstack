@@ -1,6 +1,6 @@
-import {PassportStrategy} from '@nestjs/passport';
-import {ExtractJwt, Strategy} from 'passport-jwt';
-import {Injectable} from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as bcrypt from 'bcrypt';
 import JwtPayload from '../entities/jwt-payload';

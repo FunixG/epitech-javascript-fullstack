@@ -1,4 +1,4 @@
-import {Column, Entity} from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import ApiEntity from '../../core/entities/api-entity';
 
 @Entity('users')

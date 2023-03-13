@@ -1,4 +1,4 @@
-import {WebSocketGateway} from '@nestjs/websockets';
+import { WebSocketGateway } from '@nestjs/websockets';
 import WebSocket from 'ws';
 import ApiWebsocket from '../../core/websocket/api-websocket';
 import UserService from '../../user/services/user.service';
@@ -16,6 +16,6 @@ export default class SupportWebsocketService extends ApiWebsocket {
     user: UserWebsocketEntity | undefined,
     message: string,
   ): void {
-    this.sendMessageToSessionId(sessionId, message);
+    super.sendMessageToSessionId(sessionId, message);
   }
 }

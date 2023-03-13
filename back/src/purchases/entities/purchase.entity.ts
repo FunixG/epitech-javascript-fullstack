@@ -1,4 +1,4 @@
-import {Entity, ManyToOne} from 'typeorm';
+import { Entity, ManyToOne } from 'typeorm';
 import ApiEntity from '../../core/entities/api-entity';
 import User from '../../user/entities/user.entity';
 import Product from '../../products/entities/product.entity';

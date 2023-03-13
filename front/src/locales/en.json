@@ -3,6 +3,7 @@
   "admin": {
     "btn-users": "Users",
     "btn-delete": "Delete",
+    "btn-delete-purchases": "Delete purchases",
     "action": "Actions",
     "name": "Name",
     "price": "Price",

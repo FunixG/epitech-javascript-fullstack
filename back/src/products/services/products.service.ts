@@ -1,6 +1,6 @@
-import {Injectable, Logger} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from 'typeorm';
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import Product from '../entities/product.entity';
 import CrudService from '../../core/services/crud-service';
 

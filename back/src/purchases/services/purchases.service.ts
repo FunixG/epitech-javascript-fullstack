@@ -1,6 +1,6 @@
-import {Injectable, Logger} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from 'typeorm';
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import Purchase from '../entities/purchase.entity';
 import CrudService from '../../core/services/crud-service';
 import UserService from '../../user/services/user.service';
@@ -9,6 +9,7 @@ import User from '../../user/entities/user.entity';
 import Product from '../../products/entities/product.entity';
 import BadRequestError from '../../core/errors/bad-request-error';
 import TranslocoKeys from '../../core/transloco-keys';
+import SupportWebsocketService from '../../websocket/services/support.websocket.service';
 
 @Injectable()
 export default class PurchasesService extends CrudService<Purchase> {
@@ -18,6 +19,7 @@ export default class PurchasesService extends CrudService<Purchase> {
   @InjectRepository(Purchase) repository: Repository<Purchase>,
     private readonly userService: UserService,
     private readonly productService: ProductsService,
+    private readonly websocket: SupportWebsocketService,
   ) {
     super(repository, ['user', 'product']);
   }
@@ -35,6 +37,8 @@ export default class PurchasesService extends CrudService<Purchase> {
     const product: Product = await this.productService.getById(request.product.id);
     request.user = user;
     request.product = product;
+
+    this.websocket.sendMessageToAdmins(`product-buy:${product.name}:${user.username}`);
   }
 
   async beforeSendingEntity(entity: Purchase): Promise<void> {

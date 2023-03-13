@@ -1,5 +1,5 @@
-import {MigrationInterface, QueryRunner} from 'typeorm';
-import {Logger} from '@nestjs/common';
+import { MigrationInterface, QueryRunner } from 'typeorm';
+import { Logger } from '@nestjs/common';
 
 export default class UserCreationTable1677866150024 implements MigrationInterface {
   private readonly logger = new Logger(UserCreationTable1677866150024.name);

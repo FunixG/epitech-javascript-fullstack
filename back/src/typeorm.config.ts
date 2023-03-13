@@ -1,4 +1,4 @@
-import {TypeOrmModuleOptions} from '@nestjs/typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import User from './user/entities/user.entity';
 import Product from './products/entities/product.entity';
 import Purchase from './purchases/entities/purchase.entity';

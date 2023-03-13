@@ -1,4 +1,4 @@
-import {Controller} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import CrudResource from '../../core/resources/crud-resource';
 import Product from '../entities/product.entity';
 import ProductsService from '../services/products.service';

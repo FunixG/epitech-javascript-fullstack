@@ -1,7 +1,7 @@
-import {OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage} from '@nestjs/websockets';
+import { OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage } from '@nestjs/websockets';
 import * as WebSocket from 'ws';
-import {OnApplicationShutdown} from '@nestjs/common';
-import {clearInterval} from 'timers';
+import { OnApplicationShutdown } from '@nestjs/common';
+import { clearInterval } from 'timers';
 import PingEntity from './ping.entity';
 import User from '../../user/entities/user.entity';
 import UserWebsocketEntity from './user.websocket.entity';
@@ -70,7 +70,7 @@ export default abstract class ApiWebsocket implements OnGatewayConnection,
   abstract onNewMessage(client: WebSocket, sessionId: string,
     user: UserWebsocketEntity | undefined, message: string): void;
 
-  protected sendMessageToAdmins(message: string): boolean {
+  public sendMessageToAdmins(message: string): boolean {
     let adminsReceived: number = 0;
 
     this.clientUserMap.forEach((value, key) => {

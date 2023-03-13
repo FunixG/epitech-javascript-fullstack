@@ -9,11 +9,10 @@ import ErrorHandler from '../../services/core/error-handler';
 
 function Products() {
   const { t } = useTranslation();
-  const productsService = new ProductsService();
-  const purchaseService = new PurchasesService();
   const [products, setProducts] = useState<ProductDto[]>([]);
 
   useEffect(() => {
+    const productsService = new ProductsService();
     productsService.getAll().then((data: ProductDto[] | undefined) => {
       if (data) {
         setProducts(data);
@@ -21,9 +20,10 @@ function Products() {
     }).catch(() => {
       ErrorHandler.onNewError('generic.cant-reach-api');
     });
-  });
+  }, []);
 
   const purchase = (productId: number | undefined) => {
+    const purchaseService = new PurchasesService();
     if (productId) {
       purchaseService.payment(productId).then((purchaseDone) => {
         if (purchaseDone && purchaseDone.product && purchaseDone.product.name) {

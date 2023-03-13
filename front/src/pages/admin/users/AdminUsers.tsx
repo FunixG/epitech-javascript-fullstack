@@ -6,6 +6,7 @@ import ErrorHandler from '../../../services/core/error-handler';
 import UserDto from '../../../services/user/dto/user-dto';
 import store from '../../../components/global/store';
 import { addCard } from '../../../components/global/actions';
+import PurchasesService from '../../../services/purchases/services/purchases-service';
 
 function AdminUsers() {
   const { t } = useTranslation();
@@ -34,6 +35,27 @@ function AdminUsers() {
     }
   };
 
+  const deletePurchases = (userId: number | undefined) => {
+    const purchasesService = new PurchasesService();
+
+    purchasesService.getAll().then((data) => {
+      if (data) {
+        data.forEach((purchase) => {
+          if (purchase.user && purchase.user.id && purchase.user.id === userId) {
+            if (purchase.id) {
+              purchasesService.deleteEntity(purchase.id).then(() => {
+              }).catch(() => {
+                ErrorHandler.onNewError('generic.cant-reach-api');
+              });
+            }
+          }
+        });
+      }
+    }).catch(() => {
+      ErrorHandler.onNewError('generic.cant-reach-api');
+    });
+  };
+
   const setAdmin = (user: UserDto) => {
     const userService = new UserService();
     // eslint-disable-next-line no-param-reassign
@@ -60,13 +82,14 @@ function AdminUsers() {
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr>
+                <tr key={user.id}>
                   <td>{user.username}</td>
                   <td>{user.role}</td>
                   <td>{user.address}</td>
                   <td>
                     <button type="button" onClick={() => setAdmin(user)} className="btn btn-info">{t('admin.btn-set-admin')}</button>
                     <button onClick={() => deleteUser(user.id)} type="button" className="btn btn-danger">{t('admin.btn-delete')}</button>
+                    <button onClick={() => deletePurchases(user.id)} type="button" className="btn btn-danger">{t('admin.btn-delete-purchases')}</button>
                   </td>
                 </tr>
               ))}

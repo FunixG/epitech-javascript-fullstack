@@ -8,11 +8,12 @@ import ErrorHandler from '../../services/core/error-handler';
 function Purchases() {
   const { t } = useTranslation();
 
-  const purchaseService = new PurchasesService();
-  const userService = new UserService();
   const [purchases, setPurchases] = useState<PurchaseDto[]>([]);
 
   useEffect(() => {
+    const purchaseService = new PurchasesService();
+    const userService = new UserService();
+
     purchaseService.getAll().then((data: PurchaseDto[] | undefined) => {
       if (data) {
         userService.actual().then((user) => {
@@ -33,7 +34,7 @@ function Purchases() {
     }).catch(() => {
       ErrorHandler.onNewError('generic.cant-reach-api');
     });
-  });
+  }, []);
 
   return (
     <div className="glasses">

@@ -1,4 +1,6 @@
-import {BeforeInsert, BeforeUpdate, Column, PrimaryGeneratedColumn,} from 'typeorm';
+import {
+  BeforeInsert, BeforeUpdate, Column, PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export default abstract class ApiEntity {
   @PrimaryGeneratedColumn()

@@ -1,4 +1,4 @@
-import {NotFoundException} from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 import TranslocoKeys from '../transloco-keys';
 
 export default class NotFoundError extends NotFoundException {

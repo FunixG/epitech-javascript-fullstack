@@ -7,10 +7,10 @@ function Items() {
   const { t } = useTranslation();
 
   const max = 8;
-  const productService = new ProductsService();
   const [products, setProducts] = useState<ProductDto[]>([]);
 
   useEffect(() => {
+    const productService = new ProductsService();
     productService.getAll().then((data: ProductDto[] | undefined) => {
       if (data) {
         const toSend: ProductDto[] = [];
@@ -25,7 +25,7 @@ function Items() {
       }
     }).catch(() => {
     });
-  });
+  }, []);
 
   return (
     <div className="glasses">

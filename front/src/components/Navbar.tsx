@@ -82,9 +82,6 @@ function Navbar() {
                         <li className={`nav-item ${location.pathname.endsWith('purchases') ? 'active' : ''}`}>
                           <a className="nav-link" href="/purchases">{t('navbar.purchases')}</a>
                         </li>
-                        <li className={`nav-item login_btn ${location.pathname.endsWith('account') ? 'active' : ''}`}>
-                          <a className="nav-link" href="/account">{t('navbar.account')}</a>
-                        </li>
                         {user.role === 'admin' ? (
                           <li className={`nav-item login_btn ${location.pathname.includes('admin') ? 'active' : ''}`}>
                             <a className="nav-link" href="/admin">{t('navbar.admin')}</a>

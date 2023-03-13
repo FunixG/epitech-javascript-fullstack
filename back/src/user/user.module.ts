@@ -1,7 +1,7 @@
-import {Module} from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {PassportModule} from '@nestjs/passport';
-import {JwtModule} from '@nestjs/jwt';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 import UserService from './services/user.service';
 import UserController from './controllers/user.controller';
 import User from './entities/user.entity';

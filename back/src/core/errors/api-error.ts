@@ -1,4 +1,4 @@
-import {HttpException, HttpStatus} from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import TranslocoKeys from '../transloco-keys';
 
 export default class ApiException extends HttpException {

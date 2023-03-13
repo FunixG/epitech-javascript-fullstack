@@ -1,7 +1,7 @@
-import {Injectable, Logger} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {FindOptionsWhere, Repository} from 'typeorm';
-import {JwtService} from '@nestjs/jwt';
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 import CrudService from '../../core/services/crud-service';
 import User from '../entities/user.entity';
 import EncryptionService from '../../core/services/encryption-service';
@@ -32,11 +32,14 @@ export default class UserService extends CrudService<User> {
    * @param request
    */
   async beforeSavingDatabase(request: User): Promise<void> {
-    if (request.password == null) {
+    if (!request.id && (!request.password || request.password.length === 0)) {
       throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_PASSWORD);
     }
-    if (request.username == null) {
+    if (!request.username || request.username.length === 0) {
       throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_USERNAME);
+    }
+    if (!request.address || request.address.length === 0 || !request.email || request.email.length === 0) {
+      throw new BadRequestError();
     }
 
     if (request.username === 'admin') {
@@ -46,18 +49,22 @@ export default class UserService extends CrudService<User> {
         request.role = 'admin';
       }
     } else {
-      if (await this.userExists(request.username)) {
+      if (!request.id && await this.userExists(request.username)) {
         throw new BadRequestError(TranslocoKeys.BAD_REQUEST_USER_EXISTS);
       }
 
-      if (request.id === undefined || request.id === null) {
+      if (!request.id) {
         request.role = 'user';
       } else if (request.role === null) {
         throw new BadRequestError(TranslocoKeys.BAD_REQUEST_MISSING_ROLE);
       }
     }
 
-    request.password = this.encryptionService.encrypt(request.password);
+    if (request.id === null) {
+      request.password = this.encryptionService.encrypt(request.password);
+    } else {
+      request.password = this.encryptionService.encrypt('admin');
+    }
   }
 
   /**
@@ -87,7 +94,7 @@ export default class UserService extends CrudService<User> {
   public async findUserByJwt(jwt: string): Promise<User> {
     try {
       const decoded = this.jwtService.decode(jwt);
-      const {sub} = decoded;
+      const { sub } = decoded;
       const user: User = await this.getById(Number(sub));
       user.password = null;
 

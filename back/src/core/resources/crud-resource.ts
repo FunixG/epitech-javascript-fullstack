@@ -1,11 +1,13 @@
-import {DeleteResult} from 'typeorm';
-import {Body, Delete, Get, Param, Patch, Post, UseGuards,} from '@nestjs/common';
-import {ApiBearerAuth} from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
+import {
+  Body, Delete, Get, Param, Patch, Post, UseGuards,
+} from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import ApiEntity from '../entities/api-entity';
 import CrudService from '../services/crud-service';
 import JwtAuthGuard from '../../user/services/jwt.auth.guard';
 import RolesAuthGuard from '../../user/services/roles.auth.guard';
-import {Roles} from '../../user/entities/roles.decorator';
+import { Roles } from '../../user/entities/roles.decorator';
 
 export default class CrudResource<ENTITY extends ApiEntity, SERVICE extends CrudService<ENTITY>> {
   constructor(protected service: SERVICE) {

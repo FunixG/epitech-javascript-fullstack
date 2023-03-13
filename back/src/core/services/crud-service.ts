@@ -1,4 +1,4 @@
-import {DeleteResult, FindOptionsWhere, Repository} from 'typeorm';
+import { DeleteResult, FindOptionsWhere, Repository } from 'typeorm';
 import ApiEntity from '../entities/api-entity';
 import BadRequestError from '../errors/bad-request-error';
 import NotFoundError from '../errors/not-found-error';
@@ -14,8 +14,10 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    * @param relations
    * @protected
    */
-  protected constructor(protected repository: Repository<ENTITY>,
-                        protected relations: string[] = []) {
+  protected constructor(
+    protected repository: Repository<ENTITY>,
+    protected relations: string[] = [],
+  ) {
   }
 
   /**
@@ -23,7 +25,7 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
    */
   async getAll(): Promise<ENTITY[]> {
     const list: ENTITY[] = await this.repository.find({
-      relations: this.relations
+      relations: this.relations,
     });
 
     await Promise.all(list.map(async (entity: ENTITY) => {
@@ -46,18 +48,23 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
       id,
     } as FindOptionsWhere<ENTITY>;
 
-    const search: ENTITY[] = await this.repository.findBy(query);
-
-    if (search.length === 0) {
+    const search: ENTITY = await this.repository.findOne({
+      where: query,
+      relations: this.relations,
+    });
+    if (search === null) {
       throw new NotFoundError();
     }
-    const ent: ENTITY = search[0];
-    await this.beforeSendingEntity(ent);
-    return ent;
+
+    await this.beforeSendingEntity(search);
+    return search;
   }
 
   async getBySearch(search: FindOptionsWhere<ENTITY>): Promise<ENTITY[]> {
-    const entities: ENTITY[] = await this.repository.findBy(search);
+    const entities: ENTITY[] = await this.repository.find({
+      where: search,
+      relations: this.relations,
+    });
 
     await Promise.all(entities.map(async (entity: ENTITY) => {
       await this.beforeSendingEntity(entity);
@@ -117,13 +124,15 @@ export default abstract class CrudService<ENTITY extends ApiEntity> {
       id: entId,
     } as FindOptionsWhere<ENTITY>;
 
-    const search: ENTITY[] = await this.repository.findBy(query);
-
-    if (search.length === 0) {
+    const search: ENTITY = await this.repository.findOne({
+      where: query,
+      relations: this.relations,
+    });
+    if (search === null) {
       throw new NotFoundError();
     }
-    const ent: ENTITY = search[0];
-    await this.beforeDeletingEntity(ent);
+
+    await this.beforeDeletingEntity(search);
     const result: DeleteResult = await this.repository.delete(query);
 
     if (result.affected === undefined || result.affected === 0) {

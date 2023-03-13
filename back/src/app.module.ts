@@ -1,9 +1,9 @@
-import {Module} from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {ConfigModule, ConfigService} from '@nestjs/config';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import UserModule from './user/user.module';
 import StatusController from './status.controller';
-import {commonConfig, developmentConfig, testConfig} from './typeorm.config';
+import { commonConfig, developmentConfig, testConfig } from './typeorm.config';
 import ProductsModule from './products/products.module';
 import PurchasesModule from './purchases/purchases.module';
 import WebsocketModule from './websocket/websocket.module';
