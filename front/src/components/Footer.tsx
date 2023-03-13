@@ -28,7 +28,7 @@ function Footer() {
                   />
                   <br />
                   {' '}
-                  demo@gmail.com
+                  antoine.pronnier@gmail.com
                 </li>
               </ul>
             </div>
@@ -39,12 +39,7 @@ function Footer() {
             <div className="row">
               <div className="col-md-12">
                 <p>
-                  © 2019 All Rights Reserved. Design by
-                  <a href="https://html.design/">
-                    {' '}
-                    Free Html
-                    Templates
-                  </a>
+                  Epitech Project
                 </p>
               </div>
             </div>

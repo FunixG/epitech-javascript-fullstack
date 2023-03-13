@@ -56,7 +56,7 @@ function Items() {
             </div>
           ))}
           <div className="col-md-12">
-            <a className="read_more" href="/products">{t('generic-read-more')}</a>
+            <a className="read_more" href="/products">{t('generic.read-more')}</a>
           </div>
         </div>
       </div>

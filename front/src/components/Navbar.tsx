@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import UserService from '../services/user/services/user-service';
 import UserDto from '../services/user/dto/user-dto';
 import ErrorHandler from '../services/core/error-handler';
+import store from './global/store';
+import { addCard } from './global/actions';
 
 function Navbar() {
   const { t } = useTranslation();
@@ -22,6 +24,15 @@ function Navbar() {
       ErrorHandler.onNewError('generic.cant-reach-api');
     });
   });
+
+  const { i18n } = useTranslation();
+
+  function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
+    i18n.changeLanguage(event.target.value).then(() => {
+      store.dispatch(addCard(Math.floor(Math.random() * 10000), 'alert.lang-switch'));
+    }).catch(() => {
+    });
+  }
 
   return (
     <header>
@@ -82,6 +93,10 @@ function Navbar() {
                         </li>
                       </>
                     )}
+                    <select className="nice-select" onChange={handleLanguageChange} value={i18n.language}>
+                      <option value="en">English</option>
+                      <option value="fr">Français</option>
+                    </select>
                   </ul>
                 </div>
               </nav>

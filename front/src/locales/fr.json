@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "title": "Alerte",
+    "lang-switch": "Vous avez changé de langue"
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "A propos",
+    "products": "Boutique",
+    "purchases": "Achats",
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "account": "Compte",
+    "admin": "Administration"
+  },
+  "generic": {
+    "read-more": "En savoir + !",
+    "submit": "Envoyer",
+    "cant-reach-api": "Serveur indisponible"
+  },
+  "user": {
+    "register": {
+      "title": "Création de compte"
+    },
+    "login": {
+      "title": "Connexion"
+    },
+    "purchases": {
+      "title": "Vos achats",
+      "text": "Voici la liste de vos achats passés.",
+      "success": "Vous avez acheté un item !"
+    },
+    "email": "Adresse email",
+    "email-holder": "Entrez une addresse email",
+    "password": "Mot de passe",
+    "username": "Identifiant",
+    "username-holder": "Entrez un identifiant",
+    "address": "Adresse postable",
+    "address-holder": "Entrez votre adresse postale"
+  },
+  "products": {
+    "title": "Liste des articles",
+    "text": "Voici la liste des meilleurs articles que vous pourrez trouver",
+    "buy": "Acheter"
+  },
+  "home": {
+    "welcome": "Bienvenue !",
+    "welcome-message": "Sur notre boutique de lunettes",
+    "items": {
+      "our-glasses": "Nos lunettes",
+      "our-glasses-text": "Les meilleurs produits disponibles !"
+    }
+  }
+}

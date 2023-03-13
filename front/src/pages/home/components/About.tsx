@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <div className="about">
       <div className="container">
@@ -12,12 +15,12 @@ function About() {
           </div>
           <div className="col-md-7">
             <div className="titlepage">
-              <h2>About Our Shop</h2>
+              <h2>{t('home.items.our-glasses')}</h2>
               <p>
-                Best shop in the world
+                {t('home.items.our-glasses-text')}
               </p>
             </div>
-            <a className="read_more" href="/about">Read More</a>
+            <a className="read_more" href="/about">{t('generic.read-more')}</a>
           </div>
         </div>
       </div>

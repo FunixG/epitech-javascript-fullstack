@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Banner() {
+  const { t } = useTranslation();
+
   return (
     <section className="banner_main">
       <div id="banner1" className="carousel slide" data-ride="carousel">
@@ -16,13 +19,13 @@ function Banner() {
                 <div className="text-bg">
                   <h1>
                     <span className="blu">
-                      Welcome
+                      {t('home.welcome')}
                       <br />
                     </span>
-                    To Our Sunglasses
+                    {t('home.welcome-message')}
                   </h1>
                   <figure><img src="images/banner_img.png" alt="#" /></figure>
-                  <a className="read_more" href="/src/pages">Shop Now</a>
+                  <a className="read_more" href="/products">Shop Now</a>
                 </div>
               </div>
             </div>
