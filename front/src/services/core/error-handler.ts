@@ -1,16 +1,16 @@
 import ApiError from './entities/api-error';
+import store from '../../components/global/store';
+import { addCard } from '../../components/global/actions';
 
 class ErrorHandler {
-  // eslint-disable-next-line class-methods-use-this
-  onNewErrorRequest(error: ApiError): void {
-    // eslint-disable-next-line no-console
-    console.log(error.message);
+  static onNewErrorRequest(error: ApiError): void {
+    if (error && error.message) {
+      store.dispatch(addCard(Math.floor(Math.random() * 10000), error.message));
+    }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  onNewError(message: string): void {
-    // eslint-disable-next-line no-console
-    console.log(message);
+  static onNewError(message: string): void {
+    store.dispatch(addCard(Math.floor(Math.random() * 10000), message));
   }
 }
 
