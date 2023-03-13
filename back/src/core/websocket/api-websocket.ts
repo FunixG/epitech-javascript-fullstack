@@ -70,7 +70,7 @@ export default abstract class ApiWebsocket implements OnGatewayConnection,
   }
 
   public broadcast(message: string): void {
-    this.sessionsMap.forEach((value, key) => {
+    this.sessionsMap.forEach((value) => {
       value.send(message);
     });
   }
