@@ -30,13 +30,14 @@ function Navbar() {
 
   const { i18n } = useTranslation();
 
-  let lang: string | null = localStorage.getItem('lang');
-  if (lang === null) {
-    lang = 'en';
-  }
-  i18n.changeLanguage(lang).then(() => {
-  }).catch(() => {
-  });
+  useEffect(() => {
+    const storedLang = localStorage.getItem('lang');
+    if (storedLang) {
+      i18n.changeLanguage(storedLang).then(() => {
+      }).catch(() => {
+      });
+    }
+  }, [i18n]);
 
   function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
     i18n.changeLanguage(event.target.value).then(() => {
