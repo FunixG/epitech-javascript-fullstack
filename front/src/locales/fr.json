@@ -1,4 +1,9 @@
 {
+  "admin": {
+    "btn-users": "Utilisateurs",
+    "btn-products": "Produits",
+    "command-nbr": "Nombre de commandes"
+  },
   "server": {
     "entity": {
       "not_found": "Entité introuvable."

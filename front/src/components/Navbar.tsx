@@ -12,11 +12,11 @@ import { addCard } from './global/actions';
 function Navbar() {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
-  const [user, setData] = useState<UserDto | undefined>(undefined);
-  const userService = new UserService();
+  const [user, setData] = useState<UserDto | undefined>(new UserDto());
   const location = useLocation();
 
   useEffect(() => {
+    const userService = new UserService();
     userService.actual().then((userDto) => {
       if (userDto) {
         setData(userDto);
@@ -26,7 +26,7 @@ function Navbar() {
     }).catch(() => {
       ErrorHandler.onNewError('generic.cant-reach-api');
     });
-  });
+  }, []);
 
   const { i18n } = useTranslation();
 

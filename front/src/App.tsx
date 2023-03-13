@@ -9,6 +9,9 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Purchases from './pages/purchases/Purchases';
 import User from './pages/user/User';
+import Admin from './pages/admin/Admin';
+import AdminUsers from './pages/admin/users/AdminUsers';
+import AdminProducts from './pages/admin/produtcts/AdminProducts';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Route>
       </Routes>
