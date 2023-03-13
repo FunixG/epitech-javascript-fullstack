@@ -43,8 +43,8 @@ function AdminProducts() {
               <tr>
                 <th>{t('admin.name')}</th>
                 <th>{t('admin.price')}</th>
-                <th>{t('user.description')}</th>
-                <th>{t('user.action')}</th>
+                <th>{t('admin.description')}</th>
+                <th>{t('admin.action')}</th>
               </tr>
             </thead>
             <tbody>
