@@ -30,9 +30,18 @@ function Navbar() {
 
   const { i18n } = useTranslation();
 
+  let lang: string | null = localStorage.getItem('lang');
+  if (lang === null) {
+    lang = 'en';
+  }
+  i18n.changeLanguage(lang).then(() => {
+  }).catch(() => {
+  });
+
   function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
     i18n.changeLanguage(event.target.value).then(() => {
       store.dispatch(addCard(Math.floor(Math.random() * 10000), 'alert.lang-switch'));
+      localStorage.setItem('lang', event.target.value);
     }).catch(() => {
     });
   }
