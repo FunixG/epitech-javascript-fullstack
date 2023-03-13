@@ -1,4 +1,5 @@
 {
+  "product-buy": "Nouvel achat ! ",
   "Unauthorized": "Vous n'avez pas la permission",
   "admin": {
     "btn-users": "Utilisateurs",
@@ -47,7 +48,8 @@
     "login": "Connexion",
     "register": "Créer un compte",
     "account": "Compte",
-    "admin": "Administration"
+    "admin": "Administration",
+    "logout": "Se déconnecter"
   },
   "generic": {
     "read-more": "En savoir + !",

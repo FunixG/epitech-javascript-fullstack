@@ -1,7 +1,7 @@
-import { OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage } from '@nestjs/websockets';
+import {OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage} from '@nestjs/websockets';
 import * as WebSocket from 'ws';
-import { OnApplicationShutdown } from '@nestjs/common';
-import { clearInterval } from 'timers';
+import {OnApplicationShutdown} from '@nestjs/common';
+import {clearInterval} from 'timers';
 import PingEntity from './ping.entity';
 import User from '../../user/entities/user.entity';
 import UserWebsocketEntity from './user.websocket.entity';
@@ -12,6 +12,7 @@ import UserService from '../../user/services/user.service';
  */
 export default abstract class ApiWebsocket implements OnGatewayConnection,
     OnGatewayDisconnect, OnApplicationShutdown {
+
   private pingMap = new Map<string, PingEntity>();
 
   private clientUserMap = new Map<string, UserWebsocketEntity>();
@@ -55,6 +56,7 @@ export default abstract class ApiWebsocket implements OnGatewayConnection,
 
   @SubscribeMessage('message')
   handleMessage(client: WebSocket, payload: string): void {
+    console.log(payload);
     const sessionId = this.getSessionId(client);
     if (sessionId === null) return;
 
@@ -65,6 +67,12 @@ export default abstract class ApiWebsocket implements OnGatewayConnection,
     } else {
       this.onNewMessage(client, sessionId, this.clientUserMap.get(sessionId), payload);
     }
+  }
+
+  public broadcast(message: string): void {
+    this.sessionsMap.forEach((value, key) => {
+      value.send(message);
+    });
   }
 
   abstract onNewMessage(client: WebSocket, sessionId: string,
@@ -152,7 +160,7 @@ export default abstract class ApiWebsocket implements OnGatewayConnection,
         ping.clientSocketId = sessionId;
         ping.pingMessage = ApiWebsocket.generatePingData();
 
-        this.pingMap.set(sessionId, ping);
+        ws.send('ping:' + ping.pingMessage);
       }
     });
   }

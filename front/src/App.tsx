@@ -12,6 +12,7 @@ import Admin from './pages/admin/Admin';
 import AdminUsers from './pages/admin/users/AdminUsers';
 import AdminProducts from './pages/admin/produtcts/AdminProducts';
 import AdminCreateProduct from './pages/admin/produtcts/AdminCreateProduct';
+import Logout from './pages/admin/logout/Logout';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/adminusers" element={<AdminUsers />} />

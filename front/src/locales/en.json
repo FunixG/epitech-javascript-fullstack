@@ -1,4 +1,5 @@
 {
+  "product-buy": "New buy ! ",
   "Unauthorized": "You don't have permission.",
   "admin": {
     "btn-users": "Users",
@@ -47,7 +48,8 @@
     "login": "Login",
     "register": "Register",
     "account": "Account",
-    "admin": "Administration"
+    "admin": "Administration",
+    "logout": "Loug out"
   },
   "generic": {
     "read-more": "Read more !",
