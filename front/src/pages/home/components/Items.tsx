@@ -24,7 +24,6 @@ function Items() {
         setProducts(toSend);
       }
     }).catch(() => {
-      productService.errorHandler.onNewError('generic.cant-reach-api');
     });
   });
 

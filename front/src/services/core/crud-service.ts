@@ -27,13 +27,13 @@ abstract class CrudService<ENTITY extends ApiEntity> {
   async getAll(): Promise<ENTITY[] | undefined> {
     const response = await fetch(this.domain + this.path);
 
-    return this.handleRequest<ENTITY[]>(response);
+    return CrudService.handleRequest<ENTITY[]>(response);
   }
 
   async getById(id: number): Promise<ENTITY | undefined> {
     const response = await fetch(`${this.domain + this.path}${id}`);
 
-    return this.handleRequest<ENTITY>(response);
+    return CrudService.handleRequest<ENTITY>(response);
   }
 
   async createEntity(request: ENTITY): Promise<ENTITY | undefined> {
@@ -43,7 +43,7 @@ abstract class CrudService<ENTITY extends ApiEntity> {
       headers: this.apiHeader,
     });
 
-    return this.handleRequest<ENTITY>(response);
+    return CrudService.handleRequest<ENTITY>(response);
   }
 
   async updateEntity(request: ENTITY): Promise<ENTITY | undefined> {
@@ -53,7 +53,7 @@ abstract class CrudService<ENTITY extends ApiEntity> {
       headers: this.apiHeader,
     });
 
-    return this.handleRequest<ENTITY>(response);
+    return CrudService.handleRequest<ENTITY>(response);
   }
 
   async deleteEntity(id: number): Promise<void> {
@@ -62,7 +62,7 @@ abstract class CrudService<ENTITY extends ApiEntity> {
       headers: this.apiHeader,
     });
 
-    return this.handleRequest<void>(response);
+    return CrudService.handleRequest<void>(response);
   }
 
   async postCustomPath<RESPONSE>(
@@ -75,7 +75,7 @@ abstract class CrudService<ENTITY extends ApiEntity> {
       headers: this.apiHeader,
     });
 
-    return this.handleRequest<RESPONSE>(response);
+    return CrudService.handleRequest<RESPONSE>(response);
   }
 
   async getCustomPath<RESPONSE>(
@@ -86,7 +86,7 @@ abstract class CrudService<ENTITY extends ApiEntity> {
       headers: this.apiHeader,
     });
 
-    return this.handleRequest<RESPONSE>(response);
+    return CrudService.handleRequest<RESPONSE>(response);
   }
 
   private static getBearerToken(): string {
@@ -98,12 +98,12 @@ abstract class CrudService<ENTITY extends ApiEntity> {
     return token;
   }
 
-  private async handleRequest<T>(response: Response): Promise<T | undefined> {
+  private static async handleRequest<T>(response: Response): Promise<T | undefined> {
     if (response.ok) {
-      return await response.json() as T;
+      return await response.json() as Promise<T>;
     }
-    const errorResponse: ApiError = await response.json() as ApiError;
-    this.errorHandler.onNewErrorRequest(errorResponse);
+    const errorResponse: Promise<ApiError> = await response.json() as Promise<ApiError>;
+    ErrorHandler.onNewErrorRequest(await errorResponse);
     return undefined;
   }
 }

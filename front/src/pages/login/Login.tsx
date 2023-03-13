@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import UserService from '../../services/user/services/user-service';
 import UserLoginDto from '../../services/user/dto/user-login-dto';
+import ErrorHandler from '../../services/core/error-handler';
 
 function Login() {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ function Login() {
         navigate('/');
       }
     }).catch(() => {
-      userService.errorHandler.onNewError('generic.cant-reach-api');
+      ErrorHandler.onNewError('generic.cant-reach-api');
     });
   };
 

@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 import ProductsService from '../../services/products/services/products-service';
 import ProductDto from '../../services/products/dto/product-dto';
 import PurchasesService from '../../services/purchases/services/purchases-service';
+import store from '../../components/global/store';
+import { addCard } from '../../components/global/actions';
+import ErrorHandler from "../../services/core/error-handler";
 
 function Products() {
   const { t } = useTranslation();
@@ -16,18 +19,18 @@ function Products() {
         setProducts(data);
       }
     }).catch(() => {
-      productsService.errorHandler.onNewError('generic.cant-reach-api');
+      ErrorHandler.onNewError('generic.cant-reach-api');
     });
   });
 
   const purchase = (productId: number | undefined) => {
     if (productId) {
       purchaseService.payment(productId).then((purchaseDone) => {
-        if (purchaseDone) {
-          console.log('Achat fait !');
+        if (purchaseDone && purchaseDone.product && purchaseDone.product.name) {
+          store.dispatch(addCard(Math.floor(Math.random() * 10000), `${t('user.purchases.success')} ${purchaseDone.product.name}`));
         }
       }).catch(() => {
-        productsService.errorHandler.onNewError('generic.cant-reach-api');
+        ErrorHandler.onNewError('generic.cant-reach-api');
       });
     }
   };

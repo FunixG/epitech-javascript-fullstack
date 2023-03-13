@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import UserService from '../../services/user/services/user-service';
 import PurchaseDto from '../../services/purchases/dto/purchase-dto';
 import PurchasesService from '../../services/purchases/services/purchases-service';
+import ErrorHandler from "../../services/core/error-handler";
 
 function Purchases() {
   const { t } = useTranslation();
@@ -26,11 +27,11 @@ function Purchases() {
             setPurchases(purchasesUser);
           }
         }).catch(() => {
-          userService.errorHandler.onNewError('generic.cant-reach-api');
+          ErrorHandler.onNewError('generic.cant-reach-api');
         });
       }
     }).catch(() => {
-      userService.errorHandler.onNewError('generic.cant-reach-api');
+      ErrorHandler.onNewError('generic.cant-reach-api');
     });
   });
 

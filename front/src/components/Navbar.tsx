@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import UserService from '../services/user/services/user-service';
 import UserDto from '../services/user/dto/user-dto';
+import ErrorHandler from '../services/core/error-handler';
 
 function Navbar() {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ function Navbar() {
         setData(undefined);
       }
     }).catch(() => {
-      userService.errorHandler.onNewError('generic.cant-reach-api');
+      ErrorHandler.onNewError('generic.cant-reach-api');
     });
   });
 
