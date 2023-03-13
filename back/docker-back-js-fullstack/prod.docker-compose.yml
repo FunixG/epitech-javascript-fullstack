@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
 
@@ -19,9 +19,6 @@ services:
     build:
       context: ..
       dockerfile: Dockerfile
-    depends_on:
-      postgres:
-        condition: service_started
     volumes:
       - ./container/keys:/srv/build/container/keys
     container_name: backend_js
